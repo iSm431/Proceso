@@ -17,7 +17,7 @@ public class nodo {
     protected nodo ant;
     boolean dato;
     
-    nodo(int no, int T){
+    public nodo(int no, int T){
         this.No_proc = no;
         this.Tmp_proc = T;
         this.sig = null;

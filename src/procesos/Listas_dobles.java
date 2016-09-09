@@ -12,16 +12,16 @@ package procesos;
 public class Listas_dobles {
     nodo primero;
     nodo ultimo;
+    nodo actual;
     Listas_dobles()
     {
         primero=null;
         ultimo=null;
     }
- 
+    
     public boolean estavacio()
     {
-        if(primero==null) return true;
-        else return false;
+        return primero==null;
     }
  
     public Listas_dobles alta(int no, int T)
