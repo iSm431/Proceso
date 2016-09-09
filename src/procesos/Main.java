@@ -18,16 +18,11 @@ public class Main {
         // TODO code application logic here
         Listas_dobles list_p1 = new Listas_dobles();
         
-        /*for(int i=0;i!=10;i++){
+        for(int i=1;i!=11;i++){
             list_p1.alta(i,i);
-        }*/
+        }
         
-        list_p1.alta(1,2);
-        list_p1.alta(2,2);
-        
-        list_p1.imprimir();
-        //list_p1.delete(2);
-        //list_p1.imprimir2();
+        list_p1.imprimir2();
     }
     
 }

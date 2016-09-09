@@ -91,10 +91,9 @@ public class Listas_dobles {
     {
         nodo actual;
         actual=ultimo;
-        while(actual!=primero)
+        while(actual != null)
         {
             System.out.println(actual.No_proc);
-            //System.out.println(actual.dato);
             actual=actual.ant;
         }
     }
