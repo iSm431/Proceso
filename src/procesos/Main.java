@@ -16,14 +16,8 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        /*Listas_dobles list_p1 = new Listas_dobles();
         
-        for(int i=1;i!=11;i++){
-            list_p1.alta(i,i);
-        }
         
-        list_p1.imprimir2();*/
-                
         Random rnd = new Random(3816);
         int numal;
         numal=(int) (Math.random()*(50-1+1)+1);

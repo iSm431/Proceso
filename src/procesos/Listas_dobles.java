@@ -10,13 +10,15 @@ package procesos;
  * @author ismael
  */
 public class Listas_dobles {
-    nodo primero;
-    nodo ultimo;
-    nodo actual;
+    public nodo primero;
+    public nodo ultimo;
+    public nodo actual;
+    
     Listas_dobles()
-    {
+    {        
         primero=null;
         ultimo=null;
+        actual=null;
     }
     
     public boolean estavacio()

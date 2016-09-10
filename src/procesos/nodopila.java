@@ -18,6 +18,7 @@ public class nodopila {
         No_p=d;
         TT=T;
         sig=null;
+        listap=null;
     }
 
     nodopila() {

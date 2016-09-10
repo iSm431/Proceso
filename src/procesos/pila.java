@@ -11,8 +11,8 @@ import java.util.Random;
  * @author ismael
  */
 public class pila {
-    protected nodopila cima;
-    protected nodopila primero;
+    public nodopila cima;
+    public nodopila primero;
     int n_proc;
     
     public pila(){
@@ -30,15 +30,15 @@ public class pila {
         if(estaVacia())
         {
             nodopila nuevo = new nodopila(No_p,T);
-            primero=nuevo;
-            nuevo.sig=cima;
-            //cima.sig = nuevo;
+            primero=cima=nuevo;
+            n_proc++;
         }
         else
         {
             nodopila nuevo = new nodopila(No_p,T);
             nuevo.sig=cima;
-            cima.sig = nuevo;
+            cima = nuevo;
+            n_proc++;
         }
     }
     
@@ -63,45 +63,56 @@ public class pila {
         }
     }
     
-    public int sumaTTSp(int TTSp){
+    public int sumaTTSp(){
         int TT=0;
-        nodo actual=cima.listap.primero;
-        while(actual!=null){
-            TT=TT+cima.listap.ultimo.getT();
-            System.out.println(TT+"\n\n");
+        Listas_dobles lista_p=cima.listap;
+        nodo lista_nodlp=lista_p.primero;
+        while(lista_nodlp!=null){
+            TT=TT+lista_nodlp.Tmp_proc;
+            lista_nodlp=lista_nodlp.sig;
         }
         return TT;
     }
     
-    public void llenarLdC(int numAleatP){
+    public pila llenarLdC(int numAleatP){
+        cima=null;
         Random rnd = new Random();
         int i = 1;
         
-        while(i<=numAleatP){
-            int numAleatSp = (int) (Math.random()*(20-1+1)+1);
-            System.out.println(numAleatSp);
-            int j=1;
-            //llenar pila con la cima
-            this.llenarP(i,0);
-            while(j<=numAleatSp){
-                //llenar lista de la cima N
-                int TTSp=(int) (Math.random()*(500-100+1)+100);
-                System.out.println(TTSp);
-                cima.listap.alta(j,TTSp); 
+        while(i<=numAleatP){                                                    //llenar pila con la cima N            
+            int numAleatSp = (int) (Math.random()*(20-1+1)+1);                  //numero aleatorio para los procesos
+            int j=1,TTSp=0;
+            this.llenarP(i,0);                                                  //invocar funcion para llenar pila                      
+            Listas_dobles aux = new Listas_dobles();                            //instanciar una lista doble en aux
+            while(j<=numAleatSp){                                               //llenar lista de la cima N                
+                TTSp=(int) (Math.random()*(500-100+1)+100);                     //numero aletorio de subprocesos
+                aux.alta(j, TTSp);                                              //invoca funcion para llenar lista dobe
                 j++;
             }
-            this.cima.TT=
+            cima.listap=aux;                                                    //copiar la lista doble en aux
+            //System.out.println(" proceso "+cima.No_p); 
             i++;
+            cima.TT=sumaTTSp();
+            System.out.println(" TT "+cima.TT);
         }
+        return this;
     }
     
     public void imprimirTab(){
-        nodopila cima2=primero;
-        while(cima!=null){
-            System.out.println(cima2.No_p+"\n\n\n\n");
-            while(cima.listap!=null){
-                System.out.println(cima2.No_p);
+        nodopila cima2=cima;
+        while(cima2!=null){
+            int tt=0,n=0;
+            System.out.println("No proceso = "+cima2.No_p+"\n\n");
+            Listas_dobles lista_p=cima2.listap;
+            nodo lista_nodlp=lista_p.primero;
+            while(lista_nodlp!=null){
+                tt=tt+lista_nodlp.Tmp_proc;
+                n++;
+                System.out.println(" No subproceso= "+lista_nodlp.No_proc+" No Tempo= "+lista_nodlp.Tmp_proc);
+                lista_nodlp=lista_nodlp.sig;
             }
+            System.out.println("TSp = "+n+"\n");
+            cima2=cima2.sig;
         }
     }
 }
