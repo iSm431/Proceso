@@ -16,14 +16,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        
-        Random rnd = new Random(3816);
-        int numal;
-        numal=(int) (Math.random()*(50-1+1)+1);
-        System.out.println(numal);
-        pila Pila_p = new pila();
-        Pila_p.llenarLdC(numal);
-        Pila_p.imprimirTab();
+        Menu menu = new Menu();
+        menu.MenuPrincipal();
     }    
 }
