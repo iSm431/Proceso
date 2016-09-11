@@ -77,7 +77,9 @@ public class pila {
     public pila llenarLdC(int numAleatP){
         cima=null;
         Random rnd = new Random();
+        Imprimir_archivo escribe = new Imprimir_archivo();
         int i = 1;
+        int p=0;
         
         while(i<=numAleatP){                                                    //llenar pila con la cima N            
             int numAleatSp = (int) (Math.random()*(20-1+1)+1);                  //numero aleatorio para los procesos
@@ -92,26 +94,26 @@ public class pila {
             cima.listap=aux;                                                    //copiar la lista doble en aux
             //System.out.println(" proceso "+cima.No_p); 
             i++;
+            p++;
             cima.TT=sumaTTSp();
-            System.out.println(" TT "+cima.TT);
+            escribe.escribeArchivo(p ,cima.TT);   
         }
         return this;
     }
     
     public void imprimirTab(){
         nodopila cima2=cima;
+        Imprimir_tabla escribe = new Imprimir_tabla();
         while(cima2!=null){
             int tt=0,n=0;
-            System.out.println("No proceso = "+cima2.No_p+"\n\n");
             Listas_dobles lista_p=cima2.listap;
             nodo lista_nodlp=lista_p.primero;
             while(lista_nodlp!=null){
                 tt=tt+lista_nodlp.Tmp_proc;
                 n++;
-                System.out.println(" No subproceso= "+lista_nodlp.No_proc+" No Tempo= "+lista_nodlp.Tmp_proc);
+                escribe.escribeTabla(cima2.No_p,lista_nodlp.No_proc,lista_nodlp.Tmp_proc,n);
                 lista_nodlp=lista_nodlp.sig;
             }
-            System.out.println("TSp = "+n+"\n");
             cima2=cima2.sig;
         }
     }
